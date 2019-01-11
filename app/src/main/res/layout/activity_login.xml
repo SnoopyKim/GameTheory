@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_email"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/etID"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/tvLogin"
+            android:layout_marginTop="50dp"
+            android:hint="@string/et_email_hint"
+            android:backgroundTint="@color/gray"
+            android:textColor="@color/black"
+            android:inputType="textEmailAddress"/>
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/etID"
+            android:layout_marginTop="10dp"
+            android:hint="@string/et_name_hint"
+            android:backgroundTint="@color/gray"
+            android:textColor="@color/black"
+            android:inputType="textPersonName"/>
+        <EditText
+            android:id="@+id/etPW"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/etName"
+            android:layout_marginTop="10dp"
+            android:hint="@string/et_password_hint"
+            android:backgroundTint="@color/gray"
+            android:textColor="@color/black"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/etPW"
+            android:layout_marginTop="30dp"
+            android:background="@color/lightgray"
+            android:text="@string/login"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
