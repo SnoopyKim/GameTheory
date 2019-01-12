@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".PlayerDialog"
+    android:paddingTop="20dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_player_default"/>
+    <TextView
+        android:id="@+id/tv_player_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_profile"
+        android:layout_centerHorizontal="true"
+        android:text="@string/player_name"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tv_special_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_player_name"
+        android:layout_marginTop="20dp"
+        android:layout_alignStart="@+id/iv_profile"
+        android:text="@string/special_note"/>
+    <TextView
+        android:id="@+id/tv_special_note_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_special_note"
+        android:layout_toEndOf="@+id/tv_special_note"
+        android:layout_marginStart="20dp"
+        android:text="@string/default_value_none"/>
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_special_note"
+        android:layout_marginTop="10dp"
+        android:layout_alignStart="@+id/iv_profile"
+        android:text="@string/status"/>
+    <TextView
+        android:id="@+id/tv_status_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_status"
+        android:layout_toEndOf="@+id/tv_status"
+        android:layout_marginStart="20dp"
+        android:text="@string/default_value_status"/>
+
+    <Button
+        android:id="@+id/btn_detail"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv_status"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:text="@string/detail"
+        android:textStyle="bold"/>
+    <Button
+        android:id="@+id/btn_close"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv_status"
+        android:layout_toEndOf="@+id/btn_detail"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:text="@string/close"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

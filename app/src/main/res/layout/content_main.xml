@@ -4,6 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:id="@+id/frag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_tab" />
 
+    <LinearLayout
+        android:id="@+id/ll_tab"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/tab_profile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="49.5"
+            android:background="@color/lightgray"
+            android:text="@string/profile"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"/>
+        <Button
+            android:id="@+id/tab_game"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="49.5"
+            android:background="@color/lightgray"
+            android:text="@string/game_info"/>
+    </LinearLayout>
 
 </RelativeLayout>

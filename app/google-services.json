@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "463927361448",
+    "firebase_url": "https://gametheory.firebaseio.com",
+    "project_id": "gametheory",
+    "storage_bucket": "gametheory.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463927361448:android:40e755af06a9fcd0",
+        "android_client_info": {
+          "package_name": "com.example.android.gametheory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "463927361448-ob6htoe7v6k3cmmnahodlvr5f4u8vdk8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.gametheory",
+            "certificate_hash": "3c1406c850646198c133d81a81424bb9c592c60b"
+          }
+        },
+        {
+          "client_id": "463927361448-v1k8am918ag9jjia54ev458jd0bmb6cf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj5iMNYy2mj_NG_EAs3mcXRKD0aQ2Wc4Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "463927361448-v1k8am918ag9jjia54ev458jd0bmb6cf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

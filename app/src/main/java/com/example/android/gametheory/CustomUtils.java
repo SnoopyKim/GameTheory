@@ -5,8 +5,9 @@ import android.widget.Toast;
 
 public class CustomUtils {
 
-    // disply Toast
+    // display Toast
     public static void displayToast(Context context,  String message) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
+
 }
