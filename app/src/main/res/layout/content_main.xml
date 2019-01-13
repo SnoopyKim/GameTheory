@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:layout_weight="49.5"
             android:background="@color/lightgray"
-            android:text="@string/profile"/>
+            android:text="@string/player"/>
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"

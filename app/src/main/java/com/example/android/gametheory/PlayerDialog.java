@@ -1,6 +1,7 @@
 package com.example.android.gametheory;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -23,12 +24,14 @@ public class PlayerDialog extends DialogFragment {
         // Required empty public constructor
     }
 
-    public static PlayerDialog newInstance(Player player) {
+    public static PlayerDialog newInstance(Player player, boolean isManager) {
         PlayerDialog dialog = new PlayerDialog();
 
         // Supply player data as an argument.
         Bundle args = new Bundle();
+        args.putString("uid", player.getUid());
         args.putString("name", player.getName());
+        args.putBoolean("type", isManager);
         dialog.setArguments(args);
 
         return dialog;
@@ -41,6 +44,19 @@ public class PlayerDialog extends DialogFragment {
         ImageView ivPlayerProfile = v.findViewById(R.id.iv_profile);
         TextView tvPlayerName = v.findViewById(R.id.tv_player_name);
         tvPlayerName.setText(getArguments().getString("name"));
+
+        if (getArguments().getBoolean("type")) {
+            Button btnMessage = v.findViewById(R.id.btn_message);
+            btnMessage.setVisibility(View.VISIBLE);
+            btnMessage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), MessageActivity.class);
+                    intent.putExtra("uid", getArguments().getString("uid"));
+                    startActivity(intent);
+                }
+            });
+        }
 
         Button btnDetail = v.findViewById(R.id.btn_detail);
         btnDetail.setOnClickListener(new View.OnClickListener() {
