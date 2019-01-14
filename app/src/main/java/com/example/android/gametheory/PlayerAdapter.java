@@ -3,6 +3,7 @@ package com.example.android.gametheory;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +12,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
 
     private ArrayList<Player> playerList;
     private Context context;
+    FirebaseUser user;
 
     PlayerAdapter(Context context, ArrayList<Player> list) {
         this.context = context;
         this.playerList = list;
+        this.user = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     static class PlayerViewHolder extends RecyclerView.ViewHolder {
@@ -46,14 +52,14 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     @Override
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int i) {
         final Player player = playerList.get(i);
-
+        final boolean isManager = user.getDisplayName().equals("manager");
         //Glide.with(this).load(player.image);
         holder.tvName.setText(player.name);
         holder.playerLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = ((MainActivity)context).getSupportFragmentManager();
-                PlayerDialog dialog = PlayerDialog.newInstance(player);
+                FragmentManager fm = ((AppCompatActivity)context).getSupportFragmentManager();
+                PlayerDialog dialog = PlayerDialog.newInstance(player, isManager);
                 dialog.show(fm, "test");
             }
         });

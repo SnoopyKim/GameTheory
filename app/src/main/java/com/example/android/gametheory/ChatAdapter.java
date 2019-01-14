@@ -3,6 +3,7 @@ package com.example.android.gametheory;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,8 +41,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     @Override
     public int getItemViewType(int position) {
         if (mChat.get(position).getUid().equals(stUid)) {
+            Log.d("ChatAdapter", "getItemViewType: 1");
             return 1;
         } else {
+            Log.d("ChatAdapter", "getItemViewType: 2");
             return 2;
         }
     }

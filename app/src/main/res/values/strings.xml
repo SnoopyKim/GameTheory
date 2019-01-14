@@ -25,4 +25,14 @@
     <string name="hint_message">메세지를 입력하세요</string>
     <string name="send">전송</string>
     <string name="btn_message">메세지 보기</string>
+    <string name="read_rule_book">룰북 열람</string>
+    <string name="current_game">현재 게임: </string>
+    <string name="game_title">게임 타이틀</string>
+    <string name="game_rule_subtitle_1">룰 소제목 1</string>
+    <string name="game_rule_subtitle_2">룰 소제목 2</string>
+    <string name="game_rule_subtitle_3">룰 소제목 3</string>
+    <string name="game_rule_content_1">게임 설명 1</string>
+    <string name="game_rule_content_2">게임 설명 2</string>
+    <string name="game_rule_content_3">게임 설명 3</string>
+    <string name="logout">로그아웃</string>
 </resources>

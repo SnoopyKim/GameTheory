@@ -78,7 +78,7 @@ public class MessageActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
 
-        chatView = findViewById(R.id.rv_player);
+        chatView = findViewById(R.id.rv_chat);
         chatView.hasFixedSize();
         layoutManager = new LinearLayoutManager(this);
         chatView.setLayoutManager(layoutManager);
@@ -102,7 +102,7 @@ public class MessageActivity extends AppCompatActivity {
         });
 
         String toorbar_title = isManager ? getIntent().getStringExtra("name") : "관리자";
-        toolbar.setTitle(toorbar_title);
+        getSupportActionBar().setTitle(toorbar_title);
     }
 
     public void sendMessage(String uid, String text) {
