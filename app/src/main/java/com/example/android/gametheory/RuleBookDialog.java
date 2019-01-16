@@ -18,8 +18,9 @@ import android.widget.TextView;
 public class RuleBookDialog extends DialogFragment {
     private static final String TAG = ".RuleBookDialog";
 
-    TextView tvSubTitle, tvContext, tvIndicator;
+    TextView tvGameTitle, tvSubTitle, tvContext, tvIndicator;
 
+    int game_id = 0;
     int page_num = 1;
 
     public RuleBookDialog() {
@@ -42,8 +43,10 @@ public class RuleBookDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dialog_rule_book, container, false);
 
-        TextView tvGameTitle = v.findViewById(R.id.tv_game_title);
+        game_id = getArguments().getInt("game_id");
 
+        tvGameTitle = v.findViewById(R.id.tv_game_title);
+        tvGameTitle.setText(getResources().getStringArray(R.array.title)[game_id]);
         tvSubTitle = v.findViewById(R.id.tv_game_rule_subtitle);
         tvContext = v.findViewById(R.id.tv_game_rule_content);
         tvIndicator = v.findViewById(R.id.tv_indicator);
@@ -77,18 +80,18 @@ public class RuleBookDialog extends DialogFragment {
     public void showRule() {
         switch (page_num) {
             case 1:
-                tvSubTitle.setText(getString(R.string.game_rule_subtitle_1));
-                tvContext.setText(getString(R.string.game_rule_content_1));
+                tvSubTitle.setText(getResources().getStringArray(R.array.rule_sub_title_1)[game_id]);
+                tvContext.setText(getResources().getStringArray(R.array.rule_content_1)[game_id]);
                 tvIndicator.setText("1 / 3");
                 break;
             case 2:
-                tvSubTitle.setText(getString(R.string.game_rule_subtitle_2));
-                tvContext.setText(getString(R.string.game_rule_content_2));
+                tvSubTitle.setText(getResources().getStringArray(R.array.rule_sub_title_2)[game_id]);
+                tvContext.setText(getResources().getStringArray(R.array.rule_content_2)[game_id]);
                 tvIndicator.setText("2 / 3");
                 break;
             case 3:
-                tvSubTitle.setText(getString(R.string.game_rule_subtitle_3));
-                tvContext.setText(getString(R.string.game_rule_content_3));
+                tvSubTitle.setText(getResources().getStringArray(R.array.rule_sub_title_3)[game_id]);
+                tvContext.setText(getResources().getStringArray(R.array.rule_content_3)[game_id]);
                 tvIndicator.setText("3 / 3");
                 break;
         }

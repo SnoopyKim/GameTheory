@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="title">
+        <item>마피아</item>
+        <item>블록체인</item>
+    </string-array>
+
+    <string-array name="rule_sub_title_1">
+        <item>마피아 소제목 1</item>
+        <item>블록체인 소제목 1</item>
+    </string-array>
+    <string-array name="rule_sub_title_2">
+        <item>마피아 소제목 2</item>
+        <item>블록체인 소제목 2</item>
+    </string-array>
+    <string-array name="rule_sub_title_3">
+        <item>마피아 소제목 3</item>
+        <item>블록체인 소제목 3</item>
+    </string-array>
+
+    <string-array name="rule_content_1">
+        <item>마피아 게임 설명 1</item>
+        <item>블록체인 게임 설명 1</item>
+    </string-array>
+    <string-array name="rule_content_2">
+        <item>마피아 게임 설명 2</item>
+        <item>블록체인 게임 설명 2</item>
+    </string-array>
+    <string-array name="rule_content_3">
+        <item>마피아 게임 설명 3</item>
+        <item>블록체인 게임 설명 3</item>
+    </string-array>
+</resources>

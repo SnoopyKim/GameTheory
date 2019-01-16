@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -53,8 +54,12 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int i) {
         final Player player = playerList.get(i);
         final boolean isManager = user.getDisplayName().equals("manager");
-        //Glide.with(this).load(player.image);
-        holder.tvName.setText(player.name);
+
+        if (player.getProfile()!=null) {
+            Glide.with(context).load(player.getProfile()).into(holder.ivProfile);
+        }
+
+        holder.tvName.setText(player.getName());
         holder.playerLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

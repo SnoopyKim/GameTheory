@@ -37,5 +37,17 @@
             android:layout_weight="49.5"
             android:background="@color/lightgray"
             android:text="@string/game_info"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"/>
+        <Button
+            android:id="@+id/tab_game_change"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="49.5"
+            android:background="@color/lightgray"
+            android:text="@string/game_change"/>
     </LinearLayout>
 </RelativeLayout>

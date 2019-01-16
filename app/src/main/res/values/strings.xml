@@ -35,4 +35,7 @@
     <string name="game_rule_content_2">게임 설명 2</string>
     <string name="game_rule_content_3">게임 설명 3</string>
     <string name="logout">로그아웃</string>
+    <string name="failed_value_status">탈락</string>
+    <string name="tv_timer_text">제한시간</string>
+    <string name="game_change">게임변경</string>
 </resources>

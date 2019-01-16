@@ -39,9 +39,16 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
             CustomUtils.displayToast(this, "자동 로그인: " + mAuth.getCurrentUser().getDisplayName());
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
+
+            if (mAuth.getCurrentUser().getDisplayName().equals("manager")){
+                Intent intent = new Intent(this, ManagerActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
         }
 
         userRef = FirebaseDatabase.getInstance().getReference("users");
@@ -132,8 +139,17 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             CustomUtils.displayToast(getApplicationContext(), "로그인 성공");
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
+
+                            FirebaseUser user = task.getResult().getUser();
+                            if (user.getDisplayName().equals("manager")) {
+                                Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         } else {
                             // If sign in fails, display a message to the user.
                             CustomUtils.displayToast(getApplicationContext(), "로그인 실패");

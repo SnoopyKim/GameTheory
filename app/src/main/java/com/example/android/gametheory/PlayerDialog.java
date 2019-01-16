@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,8 +31,7 @@ public class PlayerDialog extends DialogFragment {
 
         // Supply player data as an argument.
         Bundle args = new Bundle();
-        args.putString("uid", player.getUid());
-        args.putString("name", player.getName());
+        args.putSerializable("player",player);
         args.putBoolean("type", isManager);
         dialog.setArguments(args);
 
@@ -41,9 +42,22 @@ public class PlayerDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dialog_player, container, false);
 
+        final Player player = (Player)getArguments().getSerializable("player");
+
         ImageView ivPlayerProfile = v.findViewById(R.id.iv_profile);
+        if (player.getProfile()!=null) {
+            Glide.with(this).load(player.getProfile()).into(ivPlayerProfile);
+        }
+
         TextView tvPlayerName = v.findViewById(R.id.tv_player_name);
-        tvPlayerName.setText(getArguments().getString("name"));
+        tvPlayerName.setText(player.getName());
+
+        TextView tvPlayerNote = v.findViewById(R.id.tv_special_note_value);
+        tvPlayerNote.setText(player.getNote());
+
+        TextView tvStatus = v.findViewById(R.id.tv_status_value);
+        String status = player.isStatus() ? getString(R.string.default_value_status) : getString(R.string.failed_value_status);
+        tvStatus.setText(status);
 
         if (getArguments().getBoolean("type")) {
             Button btnMessage = v.findViewById(R.id.btn_message);
@@ -52,7 +66,7 @@ public class PlayerDialog extends DialogFragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), MessageActivity.class);
-                    intent.putExtra("uid", getArguments().getString("uid"));
+                    intent.putExtra("uid", player.getUid());
                     startActivity(intent);
                 }
             });

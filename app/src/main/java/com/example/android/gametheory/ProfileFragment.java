@@ -51,7 +51,7 @@ public class ProfileFragment extends Fragment {
                         if (playerUid.equals(user.getUid())) continue;
                         String playerName = userData.child("name").getValue().toString();
 
-                        playerList.add(new Player(playerUid, playerName));
+                        playerList.add(new Player(null,playerUid, playerName, getString(R.string.default_value_none), true));
                     }
                     playerAdapter.notifyDataSetChanged();
                 }
