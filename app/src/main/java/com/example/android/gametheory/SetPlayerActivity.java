@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,9 +27,11 @@ public class SetPlayerActivity extends AppCompatActivity {
     DatabaseReference playerRef;
 
     ImageView ivPlayerProfile;
-    EditText etPlayerName, etPlayerNote;
+    TextView tvPlayerName;
+    EditText etPlayerNote;
     Button btnStatus1, btnStatus2;
 
+    Player player;
     String uid;
     String image;
 
@@ -37,19 +40,18 @@ public class SetPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_player);
 
-        Player player = (Player)getIntent().getSerializableExtra("player");
+        player = (Player)getIntent().getSerializableExtra("player");
 
         uid = player.getUid();
         playerRef = FirebaseDatabase.getInstance().getReference("users").child(uid);
 
         ivPlayerProfile = findViewById(R.id.iv_profile);
-        image = player.getProfile();
-        if (image != null) {
-            Glide.with(this).load(image).into(ivPlayerProfile);
+        if (player.getProfile() != null) {
+            Glide.with(this).load(player.getProfile()).into(ivPlayerProfile);
         }
 
-        etPlayerName = findViewById(R.id.et_player_name);
-        etPlayerName.setText(player.getName());
+        tvPlayerName = findViewById(R.id.et_player_name);
+        tvPlayerName.setText(player.getName());
 
         etPlayerNote = findViewById(R.id.et_special_note_value);
         etPlayerNote.setText(player.getNote());
@@ -99,34 +101,34 @@ public class SetPlayerActivity extends AppCompatActivity {
     }
 
     public void changeProfileInfo(View view) {
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference("player").child(uid);
-        storageRef.putFile(Uri.parse(image)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                if (!task.isSuccessful()) { CustomUtils.displayToast(getApplicationContext(), "이미지 등록에 실패했습니다."); }
-                else {
-                    task.getResult().getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            String stUri = task.getResult().toString();
-                            playerRef.child("profile").setValue(stUri).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        CustomUtils.displayToast(getApplicationContext(), "플레이어 정보가 변경되었습니다.");
-                                        finish();
+        if (image != null) {
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference("player").child(uid);
+            storageRef.putFile(Uri.parse(image)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        CustomUtils.displayToast(getApplicationContext(), "이미지 등록에 실패했습니다.");
+                    } else {
+                        task.getResult().getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                String stUri = task.getResult().toString();
+                                playerRef.child("profile").setValue(stUri).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            CustomUtils.displayToast(getApplicationContext(), "플레이어 정보가 변경되었습니다.");
+                                            finish();
+                                        }
                                     }
-                                }
-                            });
-                        }
-                    });
+                                });
+                            }
+                        });
 
+                    }
                 }
-            }
-        });
-
-        String stName = etPlayerName.getText().toString();
-        playerRef.child("name").setValue(stName);
+            });
+        }
 
         String stNote = etPlayerNote.getText().toString();
         playerRef.child("note").setValue(stNote);

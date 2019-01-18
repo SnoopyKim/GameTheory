@@ -50,7 +50,8 @@
 
         <activity android:name=".SetPlayerActivity" />
         <activity android:name=".CheckVoteActivity" />
-        <activity android:name=".VoteActivity"></activity>
+        <activity android:name=".VoteActivity" />
+        <activity android:name=".CheckRankActivity"></activity>
     </application>
 
 </manifest>

@@ -46,4 +46,9 @@
     <string name="check_vote">투표 확인</string>
     <string name="start_turn_daytime">낯 시작</string>
     <string name="btn_vote">투표하기</string>
+    <string name="turn_auction">경매중</string>
+    <string name="check_rank">실시간 랭킹</string>
+    <string name="auction_start">경매 시작</string>
+    <string name="trade_book">거래 장부</string>
+    <string name="auction_play">경매 진행</string>
 </resources>

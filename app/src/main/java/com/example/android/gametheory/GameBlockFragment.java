@@ -27,9 +27,9 @@ public class GameBlockFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_game_mafia_manage, container, false);
+        View v = inflater.inflate(R.layout.fragment_game_block, container, false);
         Toolbar toolbar = v.findViewById(R.id.toolbar);
-        toolbar.setTitle("마피아 게임");
+        toolbar.setTitle("블록체인 게임");
 
         Button btnRuleBook = v.findViewById(R.id.btn_rule_book);
         btnRuleBook.setOnClickListener(new View.OnClickListener() {

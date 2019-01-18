@@ -32,20 +32,20 @@ public class GameBlockManageFragment extends Fragment {
     private static final String TAG = ".GameBlockManageFragment";
 
     DatabaseReference timerRef;
-    long time;
+    long time_timer, time;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_game_mafia_manage, container, false);
+        View v = inflater.inflate(R.layout.fragment_game_block_manage, container, false);
         Toolbar toolbar = v.findViewById(R.id.toolbar);
-        toolbar.setTitle("마피아 게임");
+        toolbar.setTitle("블록체인 게임");
 
-        timerRef = FirebaseDatabase.getInstance().getReference("game").child("0").child("time");
+        timerRef = FirebaseDatabase.getInstance().getReference("game").child("1").child("time");
         final TextView tvTimer = v.findViewById(R.id.tv_turn_time);
         timerRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                long time = (long)dataSnapshot.getValue();
+                time = (long)dataSnapshot.getValue();
                 long minute = time/60;
                 long second = (time%60);
                 tvTimer.setText(String.format("%d : %d", minute,second));
@@ -65,11 +65,11 @@ public class GameBlockManageFragment extends Fragment {
             }
         });
 
-        Button btnCheckVote = v.findViewById(R.id.btn_check_vote);
-        btnCheckVote.setOnClickListener(new View.OnClickListener() {
+        Button btnCheckRank = v.findViewById(R.id.btn_check_rank);
+        btnCheckRank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CheckVoteActivity.class);
+                Intent intent = new Intent(getActivity(), CheckRankActivity.class);
                 startActivity(intent);
             }
         });
@@ -78,16 +78,16 @@ public class GameBlockManageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Date date = new Date();
-                time = date.getTime();
-                final long endTime = time + 60*1000;
+                time_timer = date.getTime();
+                final long endTime = time_timer + 60*1000;
 
                 new Timer().scheduleAtFixedRate(new TimerTask() {
                         @Override
                         public void run() {
-                            time += 1000;
-                            timerRef.setValue((endTime-time)/1000);
+                            time_timer += 1000;
+                            timerRef.setValue((endTime-time_timer)/1000);
 
-                            if(time == endTime) { this.cancel(); }
+                            if(time_timer == endTime) { this.cancel(); }
                         }
                     }
                     , 0

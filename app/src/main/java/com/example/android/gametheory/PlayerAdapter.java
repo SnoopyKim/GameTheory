@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
 
@@ -80,6 +83,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
                     AlertDialog.Builder voteDialog = new AlertDialog.Builder(context);
                     voteDialog.setTitle("투표");
                     voteDialog.setMessage(player.getName()+"에게 투표하시겠습니까?");
+                    voteDialog.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) { }
+                    });
                     voteDialog.setPositiveButton("네", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -89,25 +96,30 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
                                         CustomUtils.displayToast(context, "이미 투표하셨습니다.");
+
                                     } else {
-                                        dataSnapshot.getRef().child("from").setValue(user.getDisplayName());
-                                        dataSnapshot.getRef().child("to").setValue(player.getName());
                                         Calendar time = Calendar.getInstance();
                                         String stTime = time.get(Calendar.HOUR_OF_DAY) + ":" + time.get(Calendar.MINUTE);
-                                        dataSnapshot.getRef().child("time").setValue(stTime);
 
-                                        CustomUtils.displayToast(context, player.getName()+"에게 투표하셨습니다.");
-                                        ((AppCompatActivity) context).finish();
+                                        HashMap<String, String> voteData = new HashMap<>();
+                                        voteData.put("from", user.getDisplayName());
+                                        voteData.put("to", player.getName());
+                                        voteData.put("time", stTime);
+                                        dataSnapshot.getRef().setValue(voteData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    CustomUtils.displayToast(context, player.getName()+"에게 투표하셨습니다.");
+                                                    ((VoteActivity) context).finish();
+                                                }
+                                            }
+                                        });
                                     }
                                 }
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) { }
                             });
                         }
-                    });
-                    voteDialog.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) { }
                     });
                     voteDialog.show();
                 } else {

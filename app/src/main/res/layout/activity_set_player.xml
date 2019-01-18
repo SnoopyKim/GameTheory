@@ -23,7 +23,7 @@
         android:background="@drawable/ic_edit_default"
         android:onClick="changeProfileImage"/>
 
-    <EditText
+    <TextView
         android:id="@+id/et_player_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/player_name"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold"/>
 
     <TextView

@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
  * A simple {@link Fragment} subclass.
  */
 public class GameMafiaFragment extends Fragment {
-    private static final String TAG = ".GameMafiaManageFragment";
+    private static final String TAG = ".GameMafiaFragment";
 
     DatabaseReference timerRef;
     long time;
@@ -48,7 +48,7 @@ public class GameMafiaFragment extends Fragment {
                 time = (long)dataSnapshot.getValue();
                 long minute = time/60;
                 long second = (time%60);
-                if (time==0) {
+                if (time==0 && getContext()!=null) {
                     tvTurn.setText(getString(R.string.turn_night));
                     tvTimer.setVisibility(View.INVISIBLE);
                 }
@@ -103,5 +103,4 @@ public class GameMafiaFragment extends Fragment {
         });
         return v;
     }
-
 }

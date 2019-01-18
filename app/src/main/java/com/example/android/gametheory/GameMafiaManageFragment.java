@@ -1,11 +1,13 @@
 package com.example.android.gametheory;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,7 @@ public class GameMafiaManageFragment extends Fragment {
     private static final String TAG = ".GameMafiaManageFragment";
 
     DatabaseReference gameRef;
+    long time_timer;
     long time;
 
     TextView tvTurn, tvTimer;
@@ -49,13 +52,14 @@ public class GameMafiaManageFragment extends Fragment {
         gameRef.child("time").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                long time = (long)dataSnapshot.getValue();
+                time = (long)dataSnapshot.getValue();
                 long minute = time/60;
                 long second = (time%60);
                 if (time==0 && getContext()!=null) {
                     tvTurn.setText(getString(R.string.turn_night));
                     tvTimer.setVisibility(View.INVISIBLE);
                 }
+                if (time != 0 && tvTimer.getVisibility()==View.INVISIBLE) { tvTimer.setVisibility(View.VISIBLE); }
                 tvTimer.setText(String.format("%d : %d", minute,second));
             }
 
@@ -85,24 +89,38 @@ public class GameMafiaManageFragment extends Fragment {
         btnSetTurn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameRef.child("vote").removeValue();
-                tvTurn.setText(getString(R.string.turn_daytime));
-                tvTimer.setVisibility(View.VISIBLE);
+                // in VoteActivity
+                AlertDialog.Builder voteDialog = new AlertDialog.Builder(getActivity());
+                voteDialog.setTitle("낮 시작");
+                voteDialog.setMessage("낮을 시작하시겠습니까?");
+                voteDialog.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) { }
+                });
+                voteDialog.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        gameRef.child("vote").removeValue();
+                        tvTurn.setText(getString(R.string.turn_daytime));
+                        tvTimer.setVisibility(View.VISIBLE);
 
-                Date date = new Date();
-                time = date.getTime();
-                final long endTime = time + 2*60*1000;
+                        Date date = new Date();
+                        time_timer = date.getTime();
+                        final long endTime = time_timer + 60*1000;
 
-                new Timer().scheduleAtFixedRate(new TimerTask() {
-                        @Override
-                        public void run() {
-                            time += 1000;
-                            gameRef.child("time").setValue((endTime-time)/1000);
-                            if(time == endTime) { this.cancel(); }
+                        new Timer().scheduleAtFixedRate(new TimerTask() {
+                            @Override
+                            public void run() {
+                                time_timer += 1000;
+                                gameRef.child("time").setValue((endTime-time_timer)/1000);
+                                if(time_timer == endTime) { this.cancel(); }
+                            }
                         }
+                        , 0
+                        , 1000);
                     }
-                    , 0
-                    , 1000);
+                });
+                voteDialog.show();
             }
         });
 
@@ -118,4 +136,5 @@ public class GameMafiaManageFragment extends Fragment {
         });
         return v;
     }
+
 }
