@@ -1,14 +1,10 @@
 package com.example.android.gametheory;
 
-
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,12 +16,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ProfileFragment extends Fragment {
-    private static final String TAG = ".ProfileFragment";
+public class VoteActivity extends AppCompatActivity {
+    private static final String TAG = ".VoteActivity";
 
     FirebaseUser user;
     DatabaseReference userRef;
@@ -37,8 +29,9 @@ public class ProfileFragment extends Fragment {
     PlayerAdapter playerAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_profile, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_vote);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         userRef = FirebaseDatabase.getInstance().getReference("users");
@@ -48,11 +41,13 @@ public class ProfileFragment extends Fragment {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot userData : dataSnapshot.getChildren()) {
                         String playerUid = userData.getKey();
-                        if (playerUid.equals(user.getUid())) continue;
+                        boolean playerStatus = (boolean) userData.child("status").getValue();
+                        if (playerUid.equals(user.getUid()) || !playerStatus) continue;
                         String playerProfile = userData.child("profile").getValue() == null ? null : userData.child("profile").getValue().toString();
                         String playerName = userData.child("name").getValue().toString();
+                        String playerNote = userData.child("note").getValue().toString();
 
-                        playerList.add(new Player(playerUid, playerProfile, playerName, getString(R.string.default_value_none), true));
+                        playerList.add(new Player(playerUid, playerProfile, playerName, playerNote, playerStatus));
                     }
                     playerAdapter.notifyDataSetChanged();
                 }
@@ -62,16 +57,13 @@ public class ProfileFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
 
-        playerView = v.findViewById(R.id.rv_player);
+        playerView = findViewById(R.id.rv_player);
         playerView.hasFixedSize();
-        layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager = new LinearLayoutManager(this);
         playerView.setLayoutManager(layoutManager);
 
-        playerAdapter = new PlayerAdapter(getActivity(), playerList, false);
+        playerAdapter = new PlayerAdapter(this, playerList, true);
         playerView.setAdapter(playerAdapter);
 
-        // Inflate the layout for this fragment
-        return v;
     }
-
 }

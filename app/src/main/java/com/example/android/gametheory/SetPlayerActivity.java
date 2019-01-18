@@ -105,16 +105,22 @@ public class SetPlayerActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 if (!task.isSuccessful()) { CustomUtils.displayToast(getApplicationContext(), "이미지 등록에 실패했습니다."); }
                 else {
-                    String stUri = task.getResult().getStorage().getDownloadUrl().toString();
-                    playerRef.child("profile").setValue(stUri).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    task.getResult().getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                CustomUtils.displayToast(getApplicationContext(), "플레이어 정보가 변경되었습니다.");
-                                finish();
-                            }
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            String stUri = task.getResult().toString();
+                            playerRef.child("profile").setValue(stUri).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        CustomUtils.displayToast(getApplicationContext(), "플레이어 정보가 변경되었습니다.");
+                                        finish();
+                                    }
+                                }
+                            });
                         }
                     });
+
                 }
             }
         });

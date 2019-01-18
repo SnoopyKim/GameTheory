@@ -87,7 +87,14 @@ public class ManagerActivity extends AppCompatActivity {
             case 0:
                 return new ProfileFragment();
             case 1:
-                return GameManageFragment.newInstance(currentGame);
+                switch (currentGame) {
+                    case 0:
+                        return new GameMafiaManageFragment();
+                    case 1:
+                        return new GameBlockManageFragment();
+                    default:
+                        return null;
+                }
             case 2:
                 return new GameChangeFragment();
             default:

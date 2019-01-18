@@ -96,7 +96,14 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 return new ProfileFragment();
             case 1:
-                return GameFragment.newInstance(currentGame);
+                switch (currentGame) {
+                    case 0:
+                        return new GameMafiaFragment();
+                    case 1:
+                        return new GameBlockFragment();
+                    default:
+                        return null;
+                }
             default:
                 Log.d(TAG, "Unhandle case");
                 return null;

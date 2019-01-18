@@ -9,41 +9,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GameFragment extends Fragment {
-    private static final String TAG = ".GameFragment";
+public class GameBlockFragment extends Fragment {
+    private static final String TAG = ".GameBlockFragment";
 
-    int current_game;
-
-    public GameFragment() {
-
-    }
-    public static GameFragment newInstance(int id) {
-        GameFragment fragment = new GameFragment();
-
-        // Supply player data as an argument.
-        Bundle args = new Bundle();
-        args.putInt("now", id);
-        fragment.setArguments(args);
-
-        return fragment;
-    }
+    DatabaseReference timerRef;
+    long time;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_game, container, false);
-
-        current_game = getArguments().getInt("now");
-
-        init(v);
-
+        View v = inflater.inflate(R.layout.fragment_game_mafia_manage, container, false);
+        Toolbar toolbar = v.findViewById(R.id.toolbar);
+        toolbar.setTitle("마피아 게임");
 
         Button btnRuleBook = v.findViewById(R.id.btn_rule_book);
         btnRuleBook.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +41,8 @@ public class GameFragment extends Fragment {
             }
         });
 
+        timerRef = FirebaseDatabase.getInstance().getReference("game").child("0").child("time");
+
         Button btnLogout = v.findViewById(R.id.btn_logout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,14 +53,7 @@ public class GameFragment extends Fragment {
                 getActivity().finish();
             }
         });
-
         return v;
-    }
-
-    private void init(View v) {
-        String [] titles = getResources().getStringArray(R.array.title);
-        TextView tvCurrentGame = v.findViewById(R.id.tv_current_game_value);
-        tvCurrentGame.setText(titles[current_game]);
     }
 
 }
