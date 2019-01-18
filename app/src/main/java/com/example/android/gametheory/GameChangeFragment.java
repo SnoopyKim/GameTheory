@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class GameChangeFragment extends Fragment {
     private static final String TAG = ".GameChangeFragment";
 
-    DatabaseReference nowRef;
+    DatabaseReference gameRef;
 
     ListView titleView;
 
@@ -31,7 +31,7 @@ public class GameChangeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_game_change, container, false);
 
-        nowRef = FirebaseDatabase.getInstance().getReference("game").child("now");
+        gameRef = FirebaseDatabase.getInstance().getReference("game");
 
         String [] titles = getResources().getStringArray(R.array.title);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, titles);
@@ -41,10 +41,11 @@ public class GameChangeFragment extends Fragment {
         titleView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                nowRef.setValue(position).addOnCompleteListener(new OnCompleteListener<Void>() {
+                gameRef.child("now").setValue(position).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+
                             CustomUtils.displayToast(getContext(), "게임이 변경되었습니다.");
                             ManagerActivity activity = (ManagerActivity) getActivity();
                             activity.fragmentReplace(1);
@@ -57,6 +58,15 @@ public class GameChangeFragment extends Fragment {
         return v;
     }
 
+    public void setGame(int id) {
+        if (id==0) {
+            gameRef.child("0").child("time").setValue(0);
+            gameRef.child("0").child("vote").removeValue();
+            gameRef.child("1").child("players").removeValue();
 
+        } else {
+
+        }
+    }
 
 }
