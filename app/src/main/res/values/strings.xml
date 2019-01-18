@@ -38,4 +38,6 @@
     <string name="failed_value_status">탈락</string>
     <string name="tv_timer_text">제한시간</string>
     <string name="game_change">게임변경</string>
+    <string name="btn_apply">수정하기</string>
+    <string name="fail_value_status">탈락</string>
 </resources>

@@ -76,7 +76,9 @@ public class PlayerDialog extends DialogFragment {
         btnDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomUtils.displayToast(getContext(), getString(R.string.detail));
+                Intent intent = new Intent(getActivity(), SetPlayerActivity.class);
+                intent.putExtra("player", player);
+                startActivity(intent);
                 dismiss();
             }
         });

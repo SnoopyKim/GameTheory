@@ -34,6 +34,14 @@
         android:textSize="18sp"/>
 
     <Button
+        android:id="@+id/btn_check_timer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:text="타이머 확인"
+        android:textSize="18sp"/>
+
+    <Button
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="60dp"

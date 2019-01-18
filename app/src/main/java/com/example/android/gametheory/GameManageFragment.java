@@ -70,7 +70,7 @@ public class GameManageFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 TimerDialog dialog = new TimerDialog();
-                dialog.show(fm, "test");
+                dialog.show(fm, "timer");
             }
         });
         Button btnSetTimer = v.findViewById(R.id.btn_set_timer);

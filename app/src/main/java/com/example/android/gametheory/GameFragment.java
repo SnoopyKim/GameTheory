@@ -55,6 +55,16 @@ public class GameFragment extends Fragment {
             }
         });
 
+        Button btnCheckTimer = v.findViewById(R.id.btn_check_timer);
+        btnCheckTimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                TimerDialog dialog = new TimerDialog();
+                dialog.show(fm, "timer");
+            }
+        });
+
         Button btnLogout = v.findViewById(R.id.btn_logout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
