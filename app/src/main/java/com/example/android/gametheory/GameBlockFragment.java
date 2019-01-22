@@ -3,17 +3,22 @@ package com.example.android.gametheory;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 /**
@@ -42,6 +47,47 @@ public class GameBlockFragment extends Fragment {
         });
 
         timerRef = FirebaseDatabase.getInstance().getReference("game").child("0").child("time");
+        final TextView tvTimer = v.findViewById(R.id.tv_turn_time);
+        timerRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                time = (long)dataSnapshot.getValue();
+                long minute = time/60;
+                long second = (time%60);
+                tvTimer.setText(String.format("%d : %d", minute,second));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
+
+
+        Button btnTradeBook = v.findViewById(R.id.btn_trade_book);
+        btnTradeBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TradeBookActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnCheckRank = v.findViewById(R.id.btn_check_rank);
+        btnCheckRank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CheckRankActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnAuction = v.findViewById(R.id.btn_auction);
+        btnAuction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AuctionActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Button btnLogout = v.findViewById(R.id.btn_logout);
         btnLogout.setOnClickListener(new View.OnClickListener() {

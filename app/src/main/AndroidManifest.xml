@@ -51,7 +51,9 @@
         <activity android:name=".SetPlayerActivity" />
         <activity android:name=".CheckVoteActivity" />
         <activity android:name=".VoteActivity" />
-        <activity android:name=".CheckRankActivity"></activity>
+        <activity android:name=".CheckRankActivity" />
+        <activity android:name=".TradeBookActivity" />
+        <activity android:name=".AuctionActivity"></activity>
     </application>
 
 </manifest>

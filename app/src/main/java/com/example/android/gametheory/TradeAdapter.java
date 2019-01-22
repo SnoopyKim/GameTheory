@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder> {
-    private List<Rank> mRank;
+public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.ViewHolder> {
+    private List<Trade> mTrade;
 
     private Context context;
 
@@ -20,19 +20,17 @@ public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder> {
     // you provide access to all the views for a data item in a view holder
     static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        TextView tvRank, tvText, tvScore;
+        TextView tvText;
 
         ViewHolder(View itemView) {
             super(itemView);
-            tvRank = itemView.findViewById(R.id.tv_rank);
             tvText = itemView.findViewById(R.id.tv_text);
-            tvScore = itemView.findViewById(R.id.tv_score);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public RankAdapter(List<Rank> aRank, Context context) {
-        this.mRank = aRank;
+    public TradeAdapter(List<Trade> aTrade, Context context) {
+        this.mTrade = aTrade;
         this.context = context;
     }
 
@@ -40,22 +38,21 @@ public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.rank_view, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.simple_view, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Rank rank = mRank.get(position);
+        final Trade Trade = mTrade.get(position);
 
-        holder.tvRank.setText(position+1);
-        holder.tvText.setText(rank.getName());
-        holder.tvScore.setText(rank.getScore()+"점");
+        String stText = Trade.getName() + "님이 " + Trade.getAuction_id() + "를 " + Trade.getBid() + "$에 낙찰";
+        holder.tvText.setText(stText);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mRank.size();
+        return mTrade.size();
     }
 }

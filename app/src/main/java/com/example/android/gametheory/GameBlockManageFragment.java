@@ -65,6 +65,15 @@ public class GameBlockManageFragment extends Fragment {
             }
         });
 
+        Button btnTradeBook = v.findViewById(R.id.btn_trade_book);
+        btnTradeBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TradeBookActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Button btnCheckRank = v.findViewById(R.id.btn_check_rank);
         btnCheckRank.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +82,7 @@ public class GameBlockManageFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         Button btnSetTurn = v.findViewById(R.id.btn_set_turn);
         btnSetTurn.setOnClickListener(new View.OnClickListener() {
             @Override

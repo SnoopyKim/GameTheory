@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Player implements Serializable {
     private String uid, profile, name, note;
     private boolean status;
+    private int money;
 
     public Player(String uid, String profile, String name, String note, boolean status) {
         this.uid = uid;
@@ -12,6 +13,13 @@ public class Player implements Serializable {
         this.name = name;
         this.note = note;
         this.status = status;
+    }
+    public Player(String uid, String profile, String name, String note, int money) {
+        this.uid = uid;
+        this.profile = profile;
+        this.name = name;
+        this.note = note;
+        this.money = money;
     }
 
     public String getUid() { return uid; }

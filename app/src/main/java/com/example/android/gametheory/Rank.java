@@ -1,19 +1,19 @@
 package com.example.android.gametheory;
 
 public class Rank {
-    String uid;
-    String text;
+    private String name;
+    private int score;
 
-    public Rank(String uid, String text) {
-        this.uid = uid;
-        this.text = text;
+    public Rank(String name, int score) {
+        this.name = name;
+        this.score = score;
     }
 
-    public String getUid() {
-        return uid;
+    public String getName() {
+        return name;
     }
 
-    public String getText() {
-        return text;
+    public int getScore() {
+        return score;
     }
 }

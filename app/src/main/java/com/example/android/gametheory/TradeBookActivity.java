@@ -15,50 +15,49 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class CheckRankActivity extends AppCompatActivity {
+public class TradeBookActivity extends AppCompatActivity {
 
-    DatabaseReference playerRef;
+    DatabaseReference tradeRef;
 
-    RecyclerView rankView;
+    RecyclerView tradeView;
     RecyclerView.LayoutManager layoutManager;
 
-    ArrayList<Rank> rankList = new ArrayList<>();
-    RankAdapter rankAdapter;
+    ArrayList<Trade> tradeList = new ArrayList<>();
+    TradeAdapter tradeAdapter;
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check_rank);
+        setContentView(R.layout.activity_trade_book);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("실시간 랭킹");
+        toolbar.setTitle("거래 장부");
 
-        playerRef = FirebaseDatabase.getInstance().getReference("game").child("1").child("players");
-        playerRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        tradeRef = FirebaseDatabase.getInstance().getReference("game").child("1").child("trades");
+        tradeRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot userData : dataSnapshot.getChildren()) {
+                    String stUid = userData.child("uid").getValue().toString();
                     String stName = userData.child("name").getValue().toString();
-                    int bronze = Integer.valueOf(userData.child("bronze").getValue().toString());
-                    int silver = Integer.valueOf(userData.child("silver").getValue().toString());
-                    int gold = Integer.valueOf(userData.child("gold").getValue().toString());
+                    int aid = Integer.valueOf(userData.child("aid").getValue().toString());
+                    int bid = Integer.valueOf(userData.child("bid").getValue().toString());
 
-                    int score = bronze + 5*silver + 10*gold;
-
-                    rankList.add(new Rank(stName, score));
+                    tradeList.add(new Trade(stUid, stName, aid, bid));
                 }
-                rankAdapter.notifyDataSetChanged();
+                tradeAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
 
-        rankView = findViewById(R.id.rv_rank);
-        rankView.hasFixedSize();
+        tradeView = findViewById(R.id.rv_trade);
+        tradeView.hasFixedSize();
         layoutManager = new LinearLayoutManager(this);
-        rankView.setLayoutManager(layoutManager);
+        tradeView.setLayoutManager(layoutManager);
 
-        rankAdapter = new RankAdapter(rankList,this);
-        rankView.setAdapter(rankAdapter);
+        tradeAdapter = new TradeAdapter(tradeList,this);
+        tradeView.setAdapter(tradeAdapter);
     }
 }

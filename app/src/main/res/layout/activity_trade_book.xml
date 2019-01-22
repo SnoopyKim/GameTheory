@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CheckRankActivity">
+    tools:context=".TradeBookActivity">
 
     <Toolbar
         android:id="@+id/toolbar"
@@ -14,11 +14,10 @@
         android:titleTextColor="@color/white"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_rank"
+        android:id="@+id/rv_trade"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintBottom_toBottomOf="parent" />
-
 
 </android.support.constraint.ConstraintLayout>
