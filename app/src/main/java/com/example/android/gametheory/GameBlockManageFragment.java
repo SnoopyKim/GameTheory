@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -31,7 +32,7 @@ import java.util.TimerTask;
 public class GameBlockManageFragment extends Fragment {
     private static final String TAG = ".GameBlockManageFragment";
 
-    DatabaseReference timerRef;
+    DatabaseReference gameRef;
     long time_timer, time;
 
     @Override
@@ -40,15 +41,18 @@ public class GameBlockManageFragment extends Fragment {
         Toolbar toolbar = v.findViewById(R.id.toolbar);
         toolbar.setTitle("블록체인 게임");
 
-        timerRef = FirebaseDatabase.getInstance().getReference("game").child("1").child("time");
+        gameRef = FirebaseDatabase.getInstance().getReference("game").child("1");
+        final TextView tvTurn = v.findViewById(R.id.tv_turn);
         final TextView tvTimer = v.findViewById(R.id.tv_turn_time);
-        timerRef.addValueEventListener(new ValueEventListener() {
+        gameRef.child("time").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 time = (long)dataSnapshot.getValue();
                 long minute = time/60;
                 long second = (time%60);
                 tvTimer.setText(String.format("%d : %d", minute,second));
+                if (time == 0) { tvTurn.setText("경매 종료"); }
+                else if (time == 59) { tvTurn.setText("경매중"); }
             }
 
             @Override
@@ -60,7 +64,7 @@ public class GameBlockManageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                RuleBookDialog dialog = RuleBookDialog.newInstance(0);
+                RuleBookDialog dialog = RuleBookDialog.newInstance(1);
                 dialog.show(fm, "test");
             }
         });
@@ -91,11 +95,18 @@ public class GameBlockManageFragment extends Fragment {
                 time_timer = date.getTime();
                 final long endTime = time_timer + 60*1000;
 
+                HashMap<String, String> data = new HashMap<>();
+                data.put("player_uid", "");
+                data.put("player_name", "없음");
+                data.put("current_bid", "500");
+                data.put("item", "bronze");
+                gameRef.child("auction").setValue(data);
+
                 new Timer().scheduleAtFixedRate(new TimerTask() {
                         @Override
                         public void run() {
                             time_timer += 1000;
-                            timerRef.setValue((endTime-time_timer)/1000);
+                            gameRef.child("time").setValue((endTime-time_timer)/1000);
 
                             if(time_timer == endTime) { this.cancel(); }
                         }

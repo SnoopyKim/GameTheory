@@ -1,13 +1,13 @@
 package com.example.android.gametheory;
 
 public class Trade {
-    private String uid, name;
-    private int auction_id, bid;
+    private String uid, name, item;
+    private int bid;
 
-    public Trade(String uid, String name, int aid, int bid) {
+    public Trade(String uid, String name, String item, int bid) {
         this.uid = uid;
         this.name = name;
-        this.auction_id = aid;
+        this.item = item;
         this.bid = bid;
     }
 
@@ -19,8 +19,8 @@ public class Trade {
         return name;
     }
 
-    public int getAuction_id() {
-        return auction_id;
+    public String getItem() {
+        return item;
     }
 
     public int getBid() {

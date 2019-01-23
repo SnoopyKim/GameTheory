@@ -41,12 +41,13 @@ public class GameBlockFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                RuleBookDialog dialog = RuleBookDialog.newInstance(0);
+                RuleBookDialog dialog = RuleBookDialog.newInstance(1);
                 dialog.show(fm, "test");
             }
         });
 
-        timerRef = FirebaseDatabase.getInstance().getReference("game").child("0").child("time");
+        timerRef = FirebaseDatabase.getInstance().getReference("game").child("1").child("time");
+        final TextView tvTurn = v.findViewById(R.id.tv_turn);
         final TextView tvTimer = v.findViewById(R.id.tv_turn_time);
         timerRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -55,6 +56,8 @@ public class GameBlockFragment extends Fragment {
                 long minute = time/60;
                 long second = (time%60);
                 tvTimer.setText(String.format("%d : %d", minute,second));
+                if (time == 0) { tvTurn.setText("경매 종료"); }
+                else if (time == 59) { tvTurn.setText("경매중"); }
             }
 
             @Override

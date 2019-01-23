@@ -88,11 +88,12 @@ public class GameChangeFragment extends Fragment {
                     for (DataSnapshot userData : dataSnapshot.getChildren()) {
                         boolean isAlive = (boolean)userData.child("status").getValue();
                         if (isAlive) {
-                            HashMap<String, Integer> playerData = new HashMap<>();
-                            playerData.put("money", 10000);
-                            playerData.put("bronze", 0);
-                            playerData.put("sliver", 0);
-                            playerData.put("gold", 0);
+                            HashMap<String, String> playerData = new HashMap<>();
+                            playerData.put("name",userData.child("name").getValue().toString());
+                            playerData.put("money", "10000");
+                            playerData.put("bronze", "0");
+                            playerData.put("silver", "0");
+                            playerData.put("gold", "0");
                             gameRef.child("1").child("players").child(userData.getKey()).setValue(playerData);
                         }
                     }

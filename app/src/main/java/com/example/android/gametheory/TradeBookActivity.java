@@ -40,10 +40,10 @@ public class TradeBookActivity extends AppCompatActivity {
                 for (DataSnapshot userData : dataSnapshot.getChildren()) {
                     String stUid = userData.child("uid").getValue().toString();
                     String stName = userData.child("name").getValue().toString();
-                    int aid = Integer.valueOf(userData.child("aid").getValue().toString());
+                    String item = userData.child("item").getValue().toString();
                     int bid = Integer.valueOf(userData.child("bid").getValue().toString());
 
-                    tradeList.add(new Trade(stUid, stName, aid, bid));
+                    tradeList.add(new Trade(stUid, stName, item, bid));
                 }
                 tradeAdapter.notifyDataSetChanged();
             }

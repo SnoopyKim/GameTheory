@@ -1,9 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AuctionActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+        android:id="@+id/iv_item"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@color/white"
+        android:src="@drawable/bronze_bar"/>
+
+        <TextView
+            android:id="@+id/tv_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/iv_item"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_current_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_item"
+            android:text="@string/current_bidder"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/tv_current_player_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_current_player"
+            android:layout_toEndOf="@+id/tv_current_player"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_current_bid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_current_player"
+            android:layout_marginTop="5dp"
+            android:text="@string/current_bid"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/tv_current_bid_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_current_bid"
+            android:layout_toEndOf="@+id/tv_current_bid"
+            android:layout_marginStart="10dp"/>
+
+        <EditText
+            android:id="@+id/et_bid"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_alignStart="@+id/iv_item"
+            android:layout_below="@+id/tv_current_bid"
+            android:hint="@string/edit_bid_hint"/>
+        <Button
+            android:id="@+id/btn_bid"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/et_bid"
+            android:background="@drawable/btn_select"
+            android:text="@string/btn_bid"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:onClick="bid"/>
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -48,7 +48,7 @@ public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Rank rank = mRank.get(position);
 
-        holder.tvRank.setText(position+1);
+        holder.tvRank.setText(String.valueOf(position+1));
         holder.tvText.setText(rank.getName());
         holder.tvScore.setText(rank.getScore()+"점");
     }

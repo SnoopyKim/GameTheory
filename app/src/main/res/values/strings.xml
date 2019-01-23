@@ -51,4 +51,8 @@
     <string name="auction_start">경매 시작</string>
     <string name="trade_book">거래 장부</string>
     <string name="auction_play">경매 진행</string>
+    <string name="btn_bid">입찰</string>
+    <string name="edit_bid_hint">입찰가를 입력해주세요</string>
+    <string name="current_bid">현재 입찰가</string>
+    <string name="current_bidder">현재 입찰자</string>
 </resources>

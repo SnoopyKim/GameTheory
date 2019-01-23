@@ -14,6 +14,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CheckRankActivity extends AppCompatActivity {
 
@@ -46,6 +48,12 @@ public class CheckRankActivity extends AppCompatActivity {
 
                     rankList.add(new Rank(stName, score));
                 }
+                Collections.sort(rankList, new Comparator<Rank>() {
+                    @Override
+                    public int compare(Rank rank1, Rank rank2) {
+                        return String.valueOf(rank2.getScore()).compareTo(String.valueOf(rank1.getScore()));
+                    }
+                });
                 rankAdapter.notifyDataSetChanged();
             }
 

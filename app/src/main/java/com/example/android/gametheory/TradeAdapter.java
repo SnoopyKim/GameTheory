@@ -46,7 +46,7 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Trade Trade = mTrade.get(position);
 
-        String stText = Trade.getName() + "님이 " + Trade.getAuction_id() + "를 " + Trade.getBid() + "$에 낙찰";
+        String stText = Trade.getItem() + "이 " + Trade.getName() + "에게 " + Trade.getBid() + "$에 낙찰되었습니다.";
         holder.tvText.setText(stText);
     }
 
