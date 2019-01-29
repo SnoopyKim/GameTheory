@@ -9,4 +9,5 @@
 /build
 /captures
 .externalNativeBuild
-/node_modules
+node_modules/
+.npm
