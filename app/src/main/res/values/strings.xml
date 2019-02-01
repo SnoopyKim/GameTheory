@@ -55,4 +55,9 @@
     <string name="edit_bid_hint">입찰가를 입력해주세요</string>
     <string name="current_bid">현재 입찰가</string>
     <string name="current_bidder">현재 입찰자</string>
+    <string name="notice">공지사항</string>
+    <string name="game">게임</string>
+    <string name="default_time_value">00:00</string>
+    <string name="subtitle">소제목</string>
+    <string name="time">시간</string>
 </resources>

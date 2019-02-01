@@ -2,39 +2,104 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
+    <RelativeLayout
+        android:id="@+id/rl_tab_top"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="88dp"
+            android:layout_height="24dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/player"
+            android:textSize="20dp"
+            android:textColor="@color/point_on"/>
+
+        <TextView
+            android:id="@+id/tv_subtitle"
+            android:layout_width="160dp"
+            android:layout_height="24dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_title"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:background="@drawable/bg_timer_txt"
+            android:text="@string/subtitle"
+            android:textSize="16dp"
+            android:textColor="@color/white"
+            />
+
+        <Switch
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_subtitle"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track"/>
+
+        <ImageButton
+            android:id="@+id/ib_menu"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_alignTop="@+id/tv_title"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_alarm_timer"/>
+
+    </RelativeLayout>
+    
     <RelativeLayout
         android:id="@+id/frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/ll_tab" />
+        android:layout_above="@+id/rl_tab_bottom" />
 
-    <LinearLayout
-        android:id="@+id/ll_tab"
+    <RelativeLayout
+        android:id="@+id/rl_tab_bottom"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="42dp"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/tab_profile"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="49.5"
-            android:background="@color/lightgray"
-            android:text="@string/player"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/white"/>
-        <Button
-            android:id="@+id/tab_game"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="49.5"
-            android:background="@color/lightgray"
-            android:text="@string/game_info"/>
-    </LinearLayout>
+        android:paddingTop="6dp"
+        android:paddingBottom="2dp"
+        android:background="@drawable/bg_tab_bottom"
+        android:alpha="0.67">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/tab_profile"
+                android:drawableTop="@drawable/ic_player_default"
+                android:text="@string/player"
+                style="@style/btn_tab_bottom" />
+            <Button
+                android:id="@+id/tab_notice"
+                android:drawableTop="@drawable/ic_player_default"
+                android:text="@string/notice"
+                android:layout_marginStart="50dp"
+                style="@style/btn_tab_bottom"/>
+            <Button
+                android:id="@+id/tab_game"
+                android:drawableTop="@drawable/ic_player_default"
+                android:text="@string/game"
+                android:layout_marginStart="50dp"
+                style="@style/btn_tab_bottom"/>
+            <Button
+                android:id="@+id/tab_message"
+                android:drawableTop="@drawable/ic_player_default"
+                android:text="@string/manager"
+                android:layout_marginStart="50dp"
+                style="@style/btn_tab_bottom"/>
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

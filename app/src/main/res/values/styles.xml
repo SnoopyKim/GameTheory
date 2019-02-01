@@ -17,4 +17,24 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="btn_tab_bottom">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:drawableTint">@drawable/color_tab_bottom</item>
+        <item name="android:textColor">@drawable/color_tab_bottom</item>
+        <item name="android:textSize">6dp</item>
+    </style>
+
+    <style name="text_bubble">
+        <item name="android:maxWidth">250dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+    </style>
+
 </resources>

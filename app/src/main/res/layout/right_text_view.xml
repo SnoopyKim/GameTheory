@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="5dp">
 
     <TextView
         android:id="@+id/tv_chat"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:text="@string/default_value_chat"
+        android:background="@drawable/bg_message"
+        style="@style/text_bubble" />
+    <TextView
+        android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp"
-        android:background="@color/white"
-        android:padding="10dp"
-        android:text="@string/default_value_chat"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:layout_alignBottom="@+id/tv_chat"
+        android:layout_toStartOf="@+id/tv_chat"
+        android:text="@string/time"
+        android:textColor="@color/white"
+        android:textSize="8dp"/>
 </RelativeLayout>
