@@ -23,7 +23,6 @@
         <item name="android:paddingStart">25dp</item>
         <item name="android:paddingEnd">25dp</item>
         <item name="android:background">@color/transparent</item>
-        <item name="android:drawableTint">@drawable/color_tab_bottom</item>
         <item name="android:textColor">@drawable/color_tab_bottom</item>
         <item name="android:textSize">6dp</item>
     </style>
@@ -39,4 +38,11 @@
         <item name="android:paddingEnd">20dp</item>
     </style>
 
+    <style name="MySwitch" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:textColorPrimaryDisableOnly">@color/gray_bar</item>
+        <item name="android:colorAccent">@color/white</item>
+        <item name="android:colorControlActivated">@color/white</item>
+        <item name="android:colorForeground">@color/white</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
 </resources>

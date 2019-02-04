@@ -22,11 +22,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     // you provide access to all the views for a data item in a view holder
     static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        TextView tvChat;
+        TextView tvChat, tvTime;
 
         ViewHolder(View itemView) {
             super(itemView);
             tvChat = itemView.findViewById(R.id.tv_chat);
+            tvTime = itemView.findViewById(R.id.tv_time);
         }
     }
 
@@ -70,6 +71,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         final Chat chat = mChat.get(position);
 
         holder.tvChat.setText(chat.getText());
+        holder.tvTime.setText(chat.getTime().substring(11,16));
     }
 
     // Return the size of your dataset (invoked by the layout manager)

@@ -2,11 +2,12 @@ package com.example.android.gametheory;
 
 public class Chat {
     String uid;
-    String text;
+    String text, time;
 
-    public Chat(String uid, String text) {
+    public Chat(String uid, String text, String time) {
         this.uid = uid;
         this.text = text;
+        this.time = time;
     }
 
     public String getUid() {
@@ -15,5 +16,9 @@ public class Chat {
 
     public String getText() {
         return text;
+    }
+
+    public String getTime() {
+        return time;
     }
 }

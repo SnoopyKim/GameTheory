@@ -62,7 +62,7 @@ public class MessageActivity extends AppCompatActivity {
                 String uid = dataSnapshot.child("uid").getValue().toString();
                 String text = dataSnapshot.child("text").getValue().toString();
 
-                Chat chat = new Chat(uid, text);
+                Chat chat = new Chat(uid, text, "");
 
                 chatList.add(chat);
                 chatView.scrollToPosition(chatList.size() - 1);

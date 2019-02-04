@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
 
-    private ArrayList<Player> playerList;
+    private ArrayList<Player> playerList, filterList;
     private Context context;
     FirebaseUser user;
 
@@ -27,6 +27,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     PlayerAdapter(Context context, ArrayList<Player> list, boolean vote) {
         this.context = context;
         this.playerList = list;
+        this.filterList = list;
         this.user = FirebaseAuth.getInstance().getCurrentUser();
         this.vote = vote;
     }
@@ -128,5 +129,15 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     @Override
     public int getItemCount() {
         return playerList.size();
+    }
+
+    public void sortAlive(boolean isAlive) {
+        playerList = new ArrayList<>();
+        for (Player player : filterList) {
+            if (player.isStatus() == isAlive) {
+                playerList.add(player);
+            }
+        }
+        notifyDataSetChanged();
     }
 }

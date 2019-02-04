@@ -68,8 +68,9 @@ public class MessageFragment extends Fragment {
                 // A new comment has been added, add it to the displayed list
                 String uid = dataSnapshot.child("uid").getValue().toString();
                 String text = dataSnapshot.child("text").getValue().toString();
+                String time = dataSnapshot.getKey();
 
-                Chat chat = new Chat(uid, text);
+                Chat chat = new Chat(uid, text, time);
 
                 chatList.add(chat);
                 chatView.scrollToPosition(chatList.size() - 1);

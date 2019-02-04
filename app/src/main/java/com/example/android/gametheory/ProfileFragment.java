@@ -34,6 +34,7 @@ public class ProfileFragment extends Fragment {
     RecyclerView.LayoutManager layoutManager;
 
     ArrayList<Player> playerList = new ArrayList<>();
+    ArrayList<Player> playerList2 = new ArrayList<>();
     PlayerAdapter playerAdapter;
 
     @Override
@@ -53,8 +54,9 @@ public class ProfileFragment extends Fragment {
                         String playerName = userData.child("name").getValue().toString();
                         int playerAge = Integer.valueOf(userData.child("age").getValue().toString());
                         String playerJob = userData.child("job").getValue().toString();
+                        boolean isAlive = (boolean)userData.child("status").getValue();
 
-                        playerList.add(new Player(playerUid, playerProfile, playerName, playerAge, playerJob, getString(R.string.default_value_none), true));
+                        playerList.add(new Player(playerUid, playerProfile, playerName, playerAge, playerJob, getString(R.string.default_value_none), isAlive));
                     }
                     playerAdapter.notifyDataSetChanged();
                 }

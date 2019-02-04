@@ -61,4 +61,6 @@
     <string name="default_time_value">00:00</string>
     <string name="subtitle">소제목</string>
     <string name="time">시간</string>
+    <string name="show_dead">사망 플레이어 보기</string>
+    <string name="show_alive">생존 플레이어 보기</string>
 </resources>

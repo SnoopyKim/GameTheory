@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/rl_main_scene"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -37,13 +38,24 @@
             />
 
         <Switch
+            android:id="@+id/switch_status"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:switchMinWidth="100dp"
+            android:layout_height="16dp"
             android:layout_below="@+id/tv_subtitle"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
             android:thumb="@drawable/thumb"
             android:track="@drawable/track"/>
+        <View
+            android:id="@+id/view"
+            android:layout_width="100dp"
+            android:layout_height="4dp"
+            android:background="@drawable/bg_view"
+            android:layout_below="@+id/tv_subtitle"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16dp"
+            android:visibility="invisible"/>
 
         <ImageButton
             android:id="@+id/ib_menu"
@@ -71,8 +83,7 @@
         android:layout_alignParentBottom="true"
         android:paddingTop="6dp"
         android:paddingBottom="2dp"
-        android:background="@drawable/bg_tab_bottom"
-        android:alpha="0.67">
+        android:background="@drawable/bg_tab_bottom">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,5 +111,21 @@
                 style="@style/btn_tab_bottom"/>
         </LinearLayout>
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_timer"
+        android:layout_width="88dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="-22dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/bg_timer_txt"
+        android:alpha="0.67"
+        android:gravity="center_vertical"
+        android:text="@string/default_time_value"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:theme="@android:style/Theme.Translucent"/>
 
 </RelativeLayout>
