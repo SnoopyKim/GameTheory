@@ -1,33 +1,20 @@
 package com.example.android.gametheory;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
 
@@ -45,15 +32,17 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     }
 
     static class PlayerViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout playerLayout;
+        RelativeLayout playerLayout;
         ImageView ivProfile;
-        TextView tvName;
+        TextView tvName, tvInfo, tvStatus;
 
         PlayerViewHolder(View view) {
             super(view);
             playerLayout = view.findViewById(R.id.ll_player);
             ivProfile = view.findViewById(R.id.iv_profile);
             tvName = view.findViewById(R.id.tv_name);
+            tvInfo = view.findViewById(R.id.tv_info);
+            tvStatus = view.findViewById(R.id.tv_status);
         }
     }
 
@@ -74,6 +63,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
         }
 
         holder.tvName.setText(player.getName());
+        holder.tvInfo.setText(player.getJob() +" / "+ player.getAge()+"세");
+        String stStatus = player.isStatus()? "생존" : "탈락";
+        holder.tvStatus.setText(stStatus);
+        /*
         holder.playerLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +122,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
                 }
             }
         });
+        */
     }
 
     @Override

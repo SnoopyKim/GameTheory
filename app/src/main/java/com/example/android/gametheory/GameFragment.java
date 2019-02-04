@@ -1,17 +1,13 @@
 package com.example.android.gametheory;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-
-import com.google.firebase.auth.FirebaseAuth;
+import android.widget.ImageButton;
 
 
 /**
@@ -40,39 +36,19 @@ public class GameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_game, container, false);
 
-        current_game = getArguments().getInt("now");
+        current_game = ((MainActivity)getActivity()).currentGame;
 
-        init(v);
-
-
-        Button btnRuleBook = v.findViewById(R.id.btn_rule_book);
+        ImageButton btnRuleBook = v.findViewById(R.id.btn_rule_book);
         btnRuleBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                RuleBookDialog dialog = RuleBookDialog.newInstance(0);
+                RuleBookDialog dialog = RuleBookDialog.newInstance(current_game);
                 dialog.show(fm, "test");
             }
         });
 
-        Button btnLogout = v.findViewById(R.id.btn_logout);
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
-
         return v;
-    }
-
-    private void init(View v) {
-        String [] titles = getResources().getStringArray(R.array.title);
-        TextView tvCurrentGame = v.findViewById(R.id.tv_current_game_value);
-        tvCurrentGame.setText(titles[current_game]);
     }
 
 }

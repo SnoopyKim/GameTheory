@@ -47,7 +47,7 @@ public class VoteActivity extends AppCompatActivity {
                         String playerName = userData.child("name").getValue().toString();
                         String playerNote = userData.child("note").getValue().toString();
 
-                        playerList.add(new Player(playerUid, playerProfile, playerName, playerNote, playerStatus));
+                        //playerList.add(new Player(playerUid, playerProfile, playerName, playerNote, playerStatus));
                     }
                     playerAdapter.notifyDataSetChanged();
                 }

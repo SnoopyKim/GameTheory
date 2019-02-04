@@ -15,15 +15,13 @@
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="-22dp"
-        android:paddingStart="5dp"
+        android:paddingStart="10dp"
         android:background="@drawable/bg_timer_txt"
         android:alpha="0.67"
         android:gravity="center_vertical"
         android:text="@string/default_time_value"
         android:textColor="@color/white"
         android:textSize="16dp"
-        android:shadowColor="@color/black"
-        android:shadowDy="3dp"
         android:theme="@android:style/Theme.Translucent"/>
     
 </RelativeLayout>

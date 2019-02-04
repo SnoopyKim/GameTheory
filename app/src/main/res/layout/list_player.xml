@@ -32,12 +32,14 @@
         android:text="직업 / 나이"
         android:textSize="8dp"
         android:textColor="@color/txt_title"
-        android:layout_toEndOf="@+id/iv_profile"
+        android:layout_alignStart="@+id/tv_name"
         android:layout_below="@+id/tv_name"/>
 
     <TextView
+        android:id="@+id/tv_status"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/tv_name"
         android:gravity="center_vertical"
         android:paddingStart="20dp"
         android:paddingEnd="0dp"

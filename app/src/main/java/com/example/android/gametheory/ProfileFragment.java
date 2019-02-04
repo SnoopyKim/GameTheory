@@ -45,14 +45,16 @@ public class ProfileFragment extends Fragment {
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
+                if (getContext()!=null && dataSnapshot.exists()) {
                     for (DataSnapshot userData : dataSnapshot.getChildren()) {
                         String playerUid = userData.getKey();
                         if (playerUid.equals(user.getUid())) continue;
                         String playerProfile = userData.child("profile").getValue() == null ? null : userData.child("profile").getValue().toString();
                         String playerName = userData.child("name").getValue().toString();
+                        int playerAge = Integer.valueOf(userData.child("age").getValue().toString());
+                        String playerJob = userData.child("job").getValue().toString();
 
-                        playerList.add(new Player(playerUid, playerProfile, playerName, getString(R.string.default_value_none), true));
+                        playerList.add(new Player(playerUid, playerProfile, playerName, playerAge, playerJob, getString(R.string.default_value_none), true));
                     }
                     playerAdapter.notifyDataSetChanged();
                 }

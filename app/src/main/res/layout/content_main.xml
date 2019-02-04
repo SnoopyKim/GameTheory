@@ -52,7 +52,8 @@
             android:layout_alignTop="@+id/tv_title"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_alarm_timer"/>
+            android:src="@drawable/icon_menu"
+            android:background="@color/transparent"/>
 
     </RelativeLayout>
     
@@ -60,6 +61,7 @@
         android:id="@+id/frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/rl_tab_top"
         android:layout_above="@+id/rl_tab_bottom" />
 
     <RelativeLayout
@@ -76,28 +78,25 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:orientation="horizontal">
-            <Button
+            <ImageButton
                 android:id="@+id/tab_profile"
-                android:drawableTop="@drawable/ic_player_default"
+                android:src="@drawable/icon_player"
                 android:text="@string/player"
                 style="@style/btn_tab_bottom" />
-            <Button
+            <ImageButton
                 android:id="@+id/tab_notice"
-                android:drawableTop="@drawable/ic_player_default"
+                android:src="@drawable/icon_notice"
                 android:text="@string/notice"
-                android:layout_marginStart="50dp"
                 style="@style/btn_tab_bottom"/>
-            <Button
+            <ImageButton
                 android:id="@+id/tab_game"
-                android:drawableTop="@drawable/ic_player_default"
+                android:src="@drawable/icon_game"
                 android:text="@string/game"
-                android:layout_marginStart="50dp"
                 style="@style/btn_tab_bottom"/>
-            <Button
+            <ImageButton
                 android:id="@+id/tab_message"
-                android:drawableTop="@drawable/ic_player_default"
+                android:src="@drawable/icon_message"
                 android:text="@string/manager"
-                android:layout_marginStart="50dp"
                 style="@style/btn_tab_bottom"/>
         </LinearLayout>
     </RelativeLayout>

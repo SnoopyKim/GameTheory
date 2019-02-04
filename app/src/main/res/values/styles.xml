@@ -18,8 +18,10 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="btn_tab_bottom">
-        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_width">70dp</item>
         <item name="android:layout_height">34dp</item>
+        <item name="android:paddingStart">25dp</item>
+        <item name="android:paddingEnd">25dp</item>
         <item name="android:background">@color/transparent</item>
         <item name="android:drawableTint">@drawable/color_tab_bottom</item>
         <item name="android:textColor">@drawable/color_tab_bottom</item>
